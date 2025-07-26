@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Inserção de lançamentos</h2>
+
+<div class="form-lancamento">
+
+    <form [formGroup]="formulario">
+        <mat-form-field appearance="fill">
+            <mat-label>Descrição</mat-label>
+            <input matInput formControlName="descricao">
+        </mat-form-field>
+
+        <mat-form-field>
+                <mat-label>Tipo Lançamento</mat-label>
+            <mat-select formControlName="tipoLancamento">
+                <mat-option value="one">Despesa</mat-option>
+                <mat-option value="two">Receita</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Valor</mat-label>
+            <input matInput type="number" placeholder="0" formControlName="valor">
+            <span matTextPrefix>$&nbsp;</span>
+            <span matTextSuffix>.00</span>
+        </mat-form-field>
+
+        <button mat-stroked-button color="primary" class="btn-adicionar" mat-dialog-close (click)="evtClickAdicionar()">Adicionar</button>
+          <button mat-stroked-button mat-dialog-close>Cancelar</button>
+    </form>
+    
+</div>

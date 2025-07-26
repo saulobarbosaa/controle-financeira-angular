@@ -1,0 +1,27 @@
+.form-lancamento > form > mat-form-field {
+    padding-right: 10px;
+}
+
+.form-lancamento {
+    margin-left: 24px;
+}
+
+button {
+    margin-right: 12px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Esconde as setas em navegadores Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Remove o efeito de foco */
+input[type=number]:focus {
+  outline: none;
+}
