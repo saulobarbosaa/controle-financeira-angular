@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Lancamento } from 'src/app/interfaces/Lancamento';
 
 @Component({
@@ -9,20 +9,35 @@ import { Lancamento } from 'src/app/interfaces/Lancamento';
 })
 export class FormLancamentoComponent implements OnInit{
   
+  lancamento!:Lancamento;
+  lancamentos: Lancamento[] = [];
+
   constructor(private formBuilder:FormBuilder) {}
 
   ngOnInit(): void {
       this.formulario = this.formBuilder.group({
-        descricao: ['Aluguel'],
-        tipoLancamento:['two'],
-        valor: [0.01]
+        descricao: ['', Validators.compose([
+          Validators.required,
+          Validators.pattern(/(.|\s)*\S(.|\s)*/),
+          Validators.maxLength(25)
+        ])],
+        tipoLancamento:[, Validators.compose([
+          Validators.required,
+        ])],
+        valor: [, Validators.compose([
+          Validators.required,
+          Validators.minLength(5)
+        ])]
       })
   }
 
   formulario!: FormGroup;
 
   evtClickAdicionar() {
-
+    this.lancamento = this.formulario.value;
+    this.lancamentos.push(this.lancamento);
+    console.log(this.lancamento);
+    console.log(this.lancamentos);
   }
 
 }

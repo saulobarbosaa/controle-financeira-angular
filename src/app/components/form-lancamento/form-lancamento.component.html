@@ -5,14 +5,14 @@
     <form [formGroup]="formulario">
         <mat-form-field appearance="fill">
             <mat-label>Descrição</mat-label>
-            <input matInput formControlName="descricao">
+            <input matInput formControlName="descricao" maxlength="25">
         </mat-form-field>
 
         <mat-form-field>
                 <mat-label>Tipo Lançamento</mat-label>
             <mat-select formControlName="tipoLancamento">
-                <mat-option value="one">Despesa</mat-option>
-                <mat-option value="two">Receita</mat-option>
+                <mat-option value="1">Despesa</mat-option>
+                <mat-option value="2">Receita</mat-option>
             </mat-select>
         </mat-form-field>
 
@@ -23,8 +23,27 @@
             <span matTextSuffix>.00</span>
         </mat-form-field>
 
-        <button mat-stroked-button color="primary" class="btn-adicionar" mat-dialog-close (click)="evtClickAdicionar()">Adicionar</button>
-          <button mat-stroked-button mat-dialog-close>Cancelar</button>
+        <button mat-stroked-button color="primary" 
+            [disabled]="!formulario.valid"
+            (click)="evtClickAdicionar()">Adicionar</button>
+        <button mat-stroked-button mat-dialog-close>Cancelar</button>
     </form>
     
+    <!-- Tratamento de erro dos inputs -->
+    <div class="tratamento-erros">
+        <div class="msgErro" *ngIf="formulario.get('descricao')?.errors?.['required'] 
+            && formulario.get('descricao')?.touched">
+                <p>A Descrição do lançamento é obrigatória</p>
+        </div>
+
+        <div class="msgErro" *ngIf="formulario.get('tipoLancamento')?.errors?.['required'] 
+            && formulario.get('tipoLancamento')?.touched">
+                <p>O tipo da descrição do lançamento é obrigatório</p>
+        </div>
+
+        <div class="msgErro" *ngIf="formulario.get('valor')?.errors?.['required'] 
+            && formulario.get('valor')?.touched">
+                <p>O valor do lançamento é obrigatório</p>
+        </div>
+    </div>
 </div>
