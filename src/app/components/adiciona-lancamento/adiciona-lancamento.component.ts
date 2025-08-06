@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog'
 import { FormLancamentoComponent } from '../form-lancamento/form-lancamento.component';
 
@@ -10,6 +10,8 @@ import { FormLancamentoComponent } from '../form-lancamento/form-lancamento.comp
 export class AdicionaLancamentoComponent {
 
   constructor(private dialog:MatDialog) {}
+
+  @Input() titulo = '';
 
   abrirFormInclusao() {
     this.dialog.open(FormLancamentoComponent, {

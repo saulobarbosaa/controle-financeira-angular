@@ -1,0 +1,22 @@
+{
+  "lancamentos": [
+    {
+      "id": "2",
+      "descricao": "Salário",
+      "valor": 3500,
+      "tipoLancamento": 2
+    },
+    {
+      "id": "3",
+      "descricao": "Supermercado",
+      "valor": 420.45,
+      "tipoLancamento": 1
+    },
+    {
+      "id": "4",
+      "descricao": "Freelance",
+      "valor": 800,
+      "tipoLancamento": 2
+    }
+  ]
+}

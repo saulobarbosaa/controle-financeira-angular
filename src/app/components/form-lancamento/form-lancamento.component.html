@@ -1,18 +1,18 @@
-<h2 mat-dialog-title>Inserção de lançamentos</h2>
+<h2 mat-dialog-title>{{valorTitulo}}</h2>
 
 <div class="form-lancamento">
 
     <form [formGroup]="formulario">
         <mat-form-field appearance="fill">
             <mat-label>Descrição</mat-label>
-            <input matInput formControlName="descricao" maxlength="25">
+            <input matInput formControlName="descricao" maxlength="25" autofocus>
         </mat-form-field>
 
         <mat-form-field>
                 <mat-label>Tipo Lançamento</mat-label>
             <mat-select formControlName="tipoLancamento">
-                <mat-option value="1">Despesa</mat-option>
-                <mat-option value="2">Receita</mat-option>
+                <mat-option [value]="1">Despesa</mat-option>
+                <mat-option [value]="2">Receita</mat-option>
             </mat-select>
         </mat-form-field>
 
@@ -25,7 +25,7 @@
 
         <button mat-stroked-button color="primary" 
             [disabled]="!formulario.valid"
-            (click)="evtClickAdicionar()">Adicionar</button>
+            (click)="evtClickAdicionar()">{{valorBotao}}</button>
         <button mat-stroked-button mat-dialog-close>Cancelar</button>
     </form>
     

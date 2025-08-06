@@ -1,6 +1,6 @@
 export interface Lancamento {
-    id:Number;
+    id:number;
     descricao:String;
-    tipoLancamento:Number;
-    valor:Number;
+    tipoLancamento:number;
+    valor:number;
 }

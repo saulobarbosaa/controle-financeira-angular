@@ -14,13 +14,22 @@ import { AdicionaLancamentoComponent } from './components/adiciona-lancamento/ad
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormLancamentoComponent } from './components/form-lancamento/form-lancamento.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ListarLancamentoComponent } from './components/listar-lancamento/listar-lancamento.component';
+import { MatTableModule } from '@angular/material/table';
+import { TipoLancamentoPipePipe } from './pipes/tipo-lancamento-pipe.pipe';
+import { MatIconModule } from '@angular/material/icon';
+import { ExcluirLancamentoComponent } from './components/excluir-lancamento/excluir-lancamento.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LancamentosComponent,
     AdicionaLancamentoComponent,
-    FormLancamentoComponent
+    FormLancamentoComponent,
+    ListarLancamentoComponent,
+    TipoLancamentoPipePipe,
+    ExcluirLancamentoComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +41,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    MatTableModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

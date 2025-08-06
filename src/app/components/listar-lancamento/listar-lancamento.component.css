@@ -1,0 +1,15 @@
+button {
+    margin-right: 10px;
+}
+
+.tblLancamentos {
+    width: 80%;
+}
+
+.lista-lancamentos {
+    max-width: 80%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
