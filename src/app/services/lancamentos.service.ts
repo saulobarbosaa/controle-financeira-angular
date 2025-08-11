@@ -12,8 +12,8 @@ export class LancamentosService {
 
   private readonly apiUrl = 'http://localhost:3000/lancamentos'
 
-  addLancamento () {
-
+  addLancamento (lancamento:Lancamento):Observable<Lancamento> {
+    return this.httpClient.post<Lancamento>(this.apiUrl, lancamento)
   }
 
   listLancamentos():Observable<Lancamento[]> {
@@ -23,6 +23,12 @@ export class LancamentosService {
   deleteLancamento(id:number):Observable<Lancamento> {
     const url = `${this.apiUrl}/${id}`
     return this.httpClient.delete<Lancamento>(url)
+  }
+
+  atualizaLancamento(id:number, lancamento:Lancamento) {
+    const url = `${this.apiUrl}/${id}`
+    console.log(lancamento.id)
+    return this.httpClient.put(url, lancamento)
   }
 
   mathLancamento() {}

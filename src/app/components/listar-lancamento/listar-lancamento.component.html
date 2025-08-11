@@ -1,10 +1,8 @@
+<div class="add-lancamento">
+    <button mat-raised-button color="primary" (click)="abrirFormInclusao()">Incluir</button>
+</div>
 <div class="lista-lancamentos">
    <table mat-table [dataSource]="listaLancamentos" class="tblLancamentos">
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-
         <ng-container matColumnDef="descricao">
             <th mat-header-cell *matHeaderCellDef> Descrição </th>
             <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>

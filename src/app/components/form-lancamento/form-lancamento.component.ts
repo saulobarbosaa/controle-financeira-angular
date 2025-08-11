@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Lancamento } from 'src/app/interfaces/Lancamento';
 import { TipoLancamentoPipePipe } from 'src/app/pipes/tipo-lancamento-pipe.pipe';
+import { LancamentosService } from 'src/app/services/lancamentos.service';
 
 @Component({
   selector: 'app-form-lancamento',
@@ -12,7 +14,6 @@ import { TipoLancamentoPipePipe } from 'src/app/pipes/tipo-lancamento-pipe.pipe'
 export class FormLancamentoComponent implements OnInit{
   
   formulario!: FormGroup;
-  lancamento!:Lancamento;
   lancamentos: Lancamento[] = [];
   @Output() lancamentosOutput = new EventEmitter<Lancamento[]>();
   valorBotao:string = "Adicionar"
@@ -21,10 +22,12 @@ export class FormLancamentoComponent implements OnInit{
 
   constructor(private formBuilder:FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: {lancamento: Lancamento, titulo: string, textoBotao: string},
-    private dialogRef: MatDialogRef<FormLancamentoComponent>
+    private dialogRef: MatDialogRef<FormLancamentoComponent>,
+    private lancamentoService: LancamentosService
   ) {}
 
   ngOnInit(): void {
+    //caso seja inserção
     if(this.data == null) {
       this.formulario = this.formBuilder.group({
         descricao: ['', Validators.compose([
@@ -40,7 +43,8 @@ export class FormLancamentoComponent implements OnInit{
           Validators.minLength(5)
         ])]
       })
-    } else if(this.data != null) {
+    } //caso seja edição 
+    else if(this.data != null) {
       this.formulario = this.formBuilder.group({
         descricao: [this.data.lancamento.descricao, Validators.compose([
           Validators.required,
@@ -62,12 +66,21 @@ export class FormLancamentoComponent implements OnInit{
   }
 
   evtClickAdicionar() {
-    this.lancamento = this.formulario.value;
-    this.lancamentos.push(this.lancamento);
-    console.log(this.lancamento);
-    console.log(this.lancamentos);
+    const lancamento:Lancamento = this.formulario.value;
 
-    this.lancamentosOutput.emit(this.lancamentos)
+    if(this.data == null) {
+        this.lancamentoService.addLancamento(lancamento).subscribe((response) => {
+        console.log(response)
+      })
+      this.dialogRef.close(true)
+    }
+    else if (this.data != null) {
+      this.lancamentoService.atualizaLancamento(this.data.lancamento.id, lancamento).subscribe((response) => {
+        console.log("lancamento atualizado")
+      })
+      this.dialogRef.close(true)
+    }
+    
   }
 
 }
